@@ -8,24 +8,26 @@ pygame.font.init()
 
 WIDTH, HEIGHT = 1600, 900
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Space Shooter GRUPO 12")
+pygame.display.set_caption("GRUPO 12 - PCA")
 
 # Carregando Imagens
 RED_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_red_small.png"))
 GREEN_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_green_small.png"))
 BLUE_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_blue_small.png"))
+VIRUS_ENEMY = pygame.transform.scale(pygame.image.load(os.path.join("assets", "coronavirus.png")), (50, 50))
 
 # Jogador
-YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "pixel_ship_yellow.png"))
+YELLOW_SPACE_SHIP = pygame.transform.scale(pygame.image.load(os.path.join("assets", "navepixgr.png")), (100, 90))
+
 
 # Lasers
 RED_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_red.png"))
 GREEN_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_green.png"))
 BLUE_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_blue.png"))
-YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"))
+YELLOW_LASER = pygame.image.load(os.path.join("assets", "vacinapng.png"))
 
 # Background
-BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
+BG = pygame.image.load(os.path.join("assets", "bg-earth.png"))
 
 # Classe de Lasers
 
@@ -50,7 +52,7 @@ class Laser:
 
 # Classe padrão de naves
 class Nave:
-    COOLDOWN = 30
+    COOLDOWN = 20
 
     def __init__(self, x, y, health = 100):
         self.x = x
@@ -125,7 +127,8 @@ class Enemy(Nave):
 
     def __init__(self, x, y, color, health = 100): # color pode ser "red", "green", "blue"
         super().__init__(x, y, health)
-        self.ship_img, self.laser_img = self.COLOR_MAP[color] # Adicionando as propriedades de cores no ship image e laser image
+        #self.ship_img, self.laser_img = self.COLOR_MAP[color] # Adicionando as propriedades de cores no ship image e laser image
+        self.ship_img = VIRUS_ENEMY
         self.mask = pygame.mask.from_surface(self.ship_img)
 
     def move(self, velocidade):
