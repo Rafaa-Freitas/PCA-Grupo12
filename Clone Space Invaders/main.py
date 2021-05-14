@@ -212,13 +212,13 @@ def main():
                 run = False
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a] and player.x - player_velocidade > 0: #Esquerda
+        if (keys[pygame.K_a] or keys[pygame.K_LEFT]) and player.x - player_velocidade > 0: #Esquerda
             player.x -= player_velocidade
-        if keys[pygame.K_d] and player.x + player_velocidade + player.get_width() < WIDTH: #Direita
+        if (keys[pygame.K_d] or keys[pygame.K_RIGHT]) and player.x + player_velocidade + player.get_width() < WIDTH: #Direita
             player.x += player_velocidade
-        if keys[pygame.K_w] and player.y - player_velocidade > 0: #Cima
+        if (keys[pygame.K_w] or keys[pygame.K_UP]) and player.y - player_velocidade > 0: #Cima
             player.y -= player_velocidade
-        if keys[pygame.K_s] and player.y + player_velocidade + player.get_height() < HEIGHT: #Baixo
+        if (keys[pygame.K_s] or keys[pygame.K_DOWN]) and player.y + player_velocidade + player.get_height() < HEIGHT: #Baixo
             player.y += player_velocidade
         if keys[pygame.K_ESCAPE]:
             run = False
